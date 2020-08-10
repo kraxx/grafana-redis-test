@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+
+  redis:
+    image: redislabs/redistimeseries
+    ports:
+      - 6379:6379
+    network_mode: host
+
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - redis
+    ports:
+      - 3000:3000
+    network_mode: host
+    volumes:
+      - ./grafana/datasources/:/etc/grafana/provisioning/datasources/
+    environment:
+      GF_INSTALL_PLUGINS: "redis-datasource"
