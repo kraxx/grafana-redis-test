@@ -19,5 +19,9 @@ datasources:
     url: redis://localhost:6379
     # <bool> allow users to edit datasources from the UI.
     editable: true
-    # <int> splish splash
-    poolSize: 5
+    access: proxy
+    jsonData:
+      poolSize: 5
+      timeout: 10
+      pingInterval: 0
+      pipelineWindow: 0

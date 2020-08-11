@@ -8,7 +8,7 @@ services:
     network_mode: host
 
   grafana:
-    image: grafana/grafana
+    image: grafana-with-redis-plugin
     depends_on:
       - redis
     ports:
@@ -16,5 +16,3 @@ services:
     network_mode: host
     volumes:
       - ./grafana/datasources/:/etc/grafana/provisioning/datasources/
-    environment:
-      GF_INSTALL_PLUGINS: "redis-datasource"
