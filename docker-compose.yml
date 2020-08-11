@@ -15,4 +15,15 @@ services:
       - 3000:3000
     network_mode: host
     volumes:
-      - ./grafana/datasources/:/etc/grafana/provisioning/datasources/
+      - ./grafana/:/etc/grafana/provisioning/
+
+  python_script:
+    image: python:alpine
+    depends_on:
+      - redis
+    network_mode: host
+    volumes:
+      - ./script/:/etc/my-script/
+    command: >
+      sh -c "pip install -r /etc/my-script/requirements.txt &&
+      python3 /etc/my-script/redis_insert.py"
