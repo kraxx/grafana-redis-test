@@ -30,6 +30,7 @@ def update_random(label):
 
 
 if __name__ == "__main__":
+    random.seed(time.time())
     create_keys()
     time.sleep(1)
 
